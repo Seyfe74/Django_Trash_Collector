@@ -3,6 +3,13 @@ from django.urls import reverse
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from .models import Customer
+from django.shortcuts import (get_object_or_404,
+                              render,
+                              HttpResponseRedirect)
+
+ 
+ 
+
 # Create your views here.
 
 # TODO: Create a function for each path created in customers/urls.py. Each will need a template as well.
@@ -35,6 +42,13 @@ def create(request):
     else:
         return render(request, 'customers/create.html')
 
+def detail(request, customer_id):
+        single_customer = Customer.objects.get(pk=customer_id)
+        context = {
+            'single_customer': single_customer
+        }
+        return(request, 'customers/detail.html', context)
+
 
 def change_pickup_date(request):
     if request.method =="POST":
@@ -52,3 +66,24 @@ def suspend_account(request):
 
 def account_info(request):
     pass
+
+
+# delete view for details
+def delete(request, customer_id):
+    single_customer = Customer.objects.get(pk=customer_id)
+    context = {
+        'single_customer': single_customer
+    }
+
+  
+    obj = get_object_or_404(Customer, id = id)
+ 
+ 
+    if request.method =="POST":
+        # delete object
+        obj.delete()
+        # after deleting redirect to
+        # home page
+        return HttpResponseRedirect("/")
+ 
+    return render(request, "customers/delete_view.html", context)

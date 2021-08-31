@@ -12,6 +12,6 @@ urlpatterns =[
     path('', views.index, name='index'),
     path('<int:customer_id>/', views.detail, name='detail'),
     path('new/', views.create, name='create'),
-    path('edit/<int:customer_id>/', views.edit, name='edit'),
+    # path('edit/<int:customer_id>/', views.edit, name='edit'),
     path('delete/<int:customer_id>', views.delete, name='delete')
 ]
