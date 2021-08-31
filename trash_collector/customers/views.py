@@ -1,4 +1,6 @@
 from django.http import HttpResponse
+from django.urls import reverse
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from .models import Customer
 # Create your views here.
@@ -21,3 +23,32 @@ def index(request):
 
     print(user)
     return render(request, 'customers/index.html')
+
+
+def create(request):
+    if request.method =="POST":
+       name = request.POST.get("name")
+       user = request.user
+       new_cust = Customer(name=name, user = user)
+       new_cust.save()
+       return HttpResponseRedirect(reverse('customers:index'))
+    else:
+        return render(request, 'customers/create.html')
+
+
+def change_pickup_date(request):
+    if request.method =="POST":
+       weekly_pickup_day = request.POST.get("weekly_pickup_day")
+       user = request.user
+       new_p_date = Customer(name = weekly_pickup_day, user = user)
+       new_p_date.save()
+       return HttpResponseRedirect(reverse('customers:index'))
+    else:
+        return render(request, 'customers/update.html')
+
+
+def suspend_account(request):
+    pass
+
+def account_info(request):
+    pass

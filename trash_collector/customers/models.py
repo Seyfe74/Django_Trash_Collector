@@ -13,6 +13,6 @@ class Customer(models.Model):
     one_time_pickup = models.DateField(null = True)
     weekly_pickup_day = models.CharField(max_length=50)
     suspend_start = models.DateField(null = True) 
-    suspend_end = models.DateField(null = False)
-    suspend_status = models.BooleanField
-    pickup_status = models.BooleanField
+    suspend_end = models.DateField(null = True)
+    suspend_status = models.BooleanField(null = True)
+    pickup_status = models.BooleanField(null = True)

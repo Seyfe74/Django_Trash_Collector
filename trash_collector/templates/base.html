@@ -3,12 +3,48 @@
 <head>
   <meta charset="utf-8">
   <title>{% block title %}{% endblock %}</title>
+
+  <style>
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+    }
+    
+    li {
+      float: left;
+    }
+    
+    li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+    
+    li a:hover:not(.active) {
+      background-color: #111;
+    }
+    
+    .active {
+      background-color: #04AA6D;
+    }
+    </style>
+
 </head>
 <body>
 {% if user.is_authenticated %}
   {% for group in user.groups.all%}
     {% if group.name == "Customers" %}
     <p>Customer Navbar</p>
+    <ul>
+      <li><a href="{% url 'customers:change_pickup_date'%}"> Change Pickup Date    </a></li>
+      <li><a href="#Suspend"> Suspend Account    </a></li>
+      <li><a href="#Account"> Account Info</a></li>
+    </ul>
     {% elif group.name == "Employees" %}
     <p>Employee Navbar</p>
     {% endif %}

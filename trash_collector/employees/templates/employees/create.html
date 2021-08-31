@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}New Customer Create{% endblock %}
+
+{% block header %}Customer Create{% endblock %}
+
+{% block content %}
+<form action="{% url 'employees:create' %}" method="post">
+    {% csrf_token %}
+    Name:<input name="name" id="name"><br>
+    Zip_code:<input name="zip_code" id="zip_code"><br>
+    <button type="submit"> Add New </button>
+</form>
+{% endblock %}
