@@ -1,0 +1,26 @@
+
+{% extends "base.html" %}
+
+{% block title %}New Customer Create{% endblock %}
+
+{% block header %}Customer Create{% endblock %}
+
+{% block content %}
+<form action="{% url 'customers:create' %}" method="post">
+    {% csrf_token %}
+    Name:<input name="name" id="name"><br>
+    Adress:<input name="address" id="address"><br>
+    Zip_code:<input name="zip_code" id="zip_code"><br>
+    Balance:<input name="balance" id="balance"><br>
+    One_time_pickup:<input name="one_time_pickup" id="one_time_pickup"><br>
+    Weekly_pickup_day:<input name="weekly_pickup_day" id="weekly_pickup_day"><br>
+    Suspend_start:<input name="suspend_start" id="suspend_start"><br>
+    Suspend_status:<input name="suspend_status" id="suspend_status"><br>
+    Pickup_status:<input name="pickup_status" id="pickup_status"><br>
+    <button type="submit">Add New </button>
+</form>
+{% endblock %}
+
+
+
+
