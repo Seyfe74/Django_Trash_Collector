@@ -7,7 +7,7 @@
 {% block content %}
 <form action="{% url 'customers:change' %}" method="post">
     {% csrf_token %}
-    <input type="text" value="{{ new_p_date.name}}" name="weekly_pickup_day" id="weekly_pickup_day">  <br/>
+    <input type="text" value="{{ new_p_date.name}}" name="weekly_pickup" id="weekly_pickup">  <br/>
     <button type="Update"> Update </button>
 </form>
 {% endblock %}

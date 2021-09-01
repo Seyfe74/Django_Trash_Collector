@@ -1,7 +1,6 @@
 from django.db import models
-# Create your models here.
 
-# TODO: Finish customer model by adding necessary properties to fulfill user stories
+
 
 
 class Customer(models.Model):
@@ -16,3 +15,6 @@ class Customer(models.Model):
     suspend_end = models.DateField(null = True)
     suspend_status = models.BooleanField(null = True)
     pickup_status = models.BooleanField(null = True)
+
+    def __str__(self):
+        return self.name

@@ -17,14 +17,14 @@ from django.shortcuts import (get_object_or_404,
 
 def index(request):
     # The following line will get the logged-in in user (if there is one) within any view function
-    user = request.user
+    Customer.objects.get(user=user)
 
     try:
         # This line inside the 'try' will return the customer record of the logged-in user if one exists
         logged_in_customer = Customer.objects.get(user=user)
     except:
         # TODO: Redirect the user to a 'create' function to finish the registration process if no customer record found
-        pass
+        return render(request, 'customers/create.html')
 
     # It will be necessary while creating a Customer/Employee to assign request.user as the user foreign key
 
@@ -43,6 +43,7 @@ def create(request):
         return render(request, 'customers/create.html')
 
 def detail(request, customer_id):
+        user = request.user
         single_customer = Customer.objects.get(pk=customer_id)
         context = {
             'single_customer': single_customer
@@ -50,25 +51,36 @@ def detail(request, customer_id):
         return(request, 'customers/detail.html', context)
 
 
-def change_pickup_date(request):
+def weekly_pickup(request):
     if request.method =="POST":
-       weekly_pickup_day = request.POST.get("weekly_pickup_day")
        user = request.user
+       weekly_pickup_day = request.POST.get("weekly_pickup_day")
        new_p_date = Customer(name = weekly_pickup_day, user = user)
        new_p_date.save()
        return HttpResponseRedirect(reverse('customers:index'))
     else:
-        return render(request, 'customers/update.html')
+        return render(request, 'customers/weekly_pickup.html')
 
 
 def suspend_account(request):
-    pass
+    user = request.user
+    single_customer = Customer.objects.get(user=user)
+    if request.method =="POST":
+        single_customer.suspend_start = request.POST.get('suspend_start')
+        single_customer.suspend_end = request.POST.get('suspend_end')
+        single_customer.save()
+        return HttpResponseRedirect(reverse('customers:index'))
+    else:
+        context = {
+            'single_customer' : single_customer
+        }
+    return render(request, 'customers/suspend.html', context)
 
 def account_info(request):
     pass
 
 
-# delete view for details
+
 def delete(request, customer_id):
     single_customer = Customer.objects.get(pk=customer_id)
     context = {

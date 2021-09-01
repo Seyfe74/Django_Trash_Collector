@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+  
   <meta charset="utf-8">
   <title>{% block title %}{% endblock %}</title>
 
@@ -42,33 +42,17 @@
 {% if user.is_authenticated %}
   {% for group in user.groups.all%}
     {% if group.name == "Customers" %}
-    <p>Customer Navbar</p>
-    <ul>
-      <li><a href="{% url 'customers:change_pickup_date'%}"> Change Pickup Date    </a></li>
-      <li><a href="#Suspend"> Suspend Account    </a></li>
-      <li><a href="#Account"> Account Info</a></li>
+    {% block nav %}
+    <ul id="nav">
+      <li>{% block nav-index %}<a href="{% url 'customers:index' %}">Home</a>{% endblock %}</li>
+      <li>{% block nav-details %}<a href="{% url 'customers:details' %}">Account</a>{% endblock %}</li>
+      <li>{% block nav-weekly %}<a href="{% url 'customers:weekly' %}">Change Pickup Day</a>{% endblock %}</li>
+      <li>{% block nav-suspend %}<a href="{% url 'customers:suspend' %}">Suspend Account</a>{% endblock %}</li>
     </ul>
+    {% endblock %}
     {% elif group.name == "Employees" %}
     <p>Employee Navbar</p>
-    <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <div class="navbar-header">
-      
-          <a class="navbar-brand" href="#"></a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">default daily view </a></li>
-            <li><a href="projects">suspend my account</a></li>
-            <li><a href="#contact">account info </a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-          </ul>
-        </div>
-      </div>
-    </nav>
-
+    
     {% endif %}
   {% endfor %}
   <p><a href="{% url 'logout' %}">Log Out</a></p>

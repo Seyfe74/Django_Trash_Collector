@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block title %} Account Information {% endblock %}
+
+{% block header %} Account Information {% endblock %}
+
+{% block content %}
+<ul>
+    <li><h2>Name: {{single_customer.name}}</h2></li>
+    <li><h2>Address: {{single_customer.address}}</h2></li>
+    <li><h2>Zip Code: {{single_customer.zip_code}}</h2></li>
+    <li><h2>Balance: {{single_customer.balance}}</h2></li>
+    <li><h2>Weekly Pickup:  {{single_user.weekly_pickup}}</h2></li>
+</ul>
+{% endblock %}
