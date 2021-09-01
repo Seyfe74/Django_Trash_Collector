@@ -37,17 +37,26 @@ def index(request):
 def create(request):
     if request.method =="POST":
        name = request.POST.get("name")
+       address = request.POST.get("address")
+       zip_code = request.POST.get("zip_code")
+       balance = request.POST.get("balance")
+       one_time_pickup = request.POST.get("one_time_pickup")
+       weekly_pickup_day = request.POST.get("weekly_pickup_day")
+       suspend_start = request.POST.get("suspend_start")
+       suspend_status = request.POST.get("suspend_status")
+       pickup_status = request.POST.get("pickup_status")
        user = request.user
-       new_cust = Customer(name=name, user = user)
+       new_cust = Customer(name=name,address=address,zip_code=zip_code,balance=balance,one_time_pickup=one_time_pickup,weekly_pickup_day=weekly_pickup_day,suspend_start=suspend_start,suspend_status=suspend_status,pickup_status=pickup_status,  user = user)
        new_cust.save()
        return HttpResponseRedirect(reverse('customers:index'))
     else:
         return render(request, 'customers/create.html')
 
-def details(request, customer_id):
+
+def details(request):
         user = request.user
         
-        single_customer = Customer.objects.get(pk = customer_id, user=user)
+        single_customer = Customer.objects.get(user=user )
         context = {
             'single_customer': single_customer
         }
