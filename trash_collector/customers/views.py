@@ -6,6 +6,7 @@ from .models import Customer
 from django.shortcuts import (get_object_or_404,
                               render,
                               HttpResponseRedirect)
+from django.apps import apps
 
  
  
@@ -24,8 +25,9 @@ def index(request):
         logged_in_customer = Customer.objects.get(user=user)
     except:
         # TODO: Redirect the user to a 'create' function to finish the registration process if no customer record found
+        customer = apps.get_model('customers.customer')
         return render(request, 'customers/create.html')
-
+       
     # It will be necessary while creating a Customer/Employee to assign request.user as the user foreign key
 
     print(user)
@@ -42,16 +44,17 @@ def create(request):
     else:
         return render(request, 'customers/create.html')
 
-def detail(request, customer_id):
+def details(request, customer_id):
         user = request.user
-        single_customer = Customer.objects.get(pk=customer_id)
+        
+        single_customer = Customer.objects.get(pk = customer_id, user=user)
         context = {
             'single_customer': single_customer
         }
-        return(request, 'customers/detail.html', context)
+        return render(request, 'customers/details.html', context)
 
 
-def weekly_pickup(request):
+def weekly(request):
     if request.method =="POST":
        user = request.user
        weekly_pickup_day = request.POST.get("weekly_pickup_day")
@@ -59,10 +62,10 @@ def weekly_pickup(request):
        new_p_date.save()
        return HttpResponseRedirect(reverse('customers:index'))
     else:
-        return render(request, 'customers/weekly_pickup.html')
+        return render(request, 'customers/weekly.html')
 
 
-def suspend_account(request):
+def suspend(request):
     user = request.user
     single_customer = Customer.objects.get(user=user)
     if request.method =="POST":

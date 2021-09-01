@@ -7,12 +7,13 @@ from . import views
 from django.urls import path
 from . import views
 
-app_name = 'customer'
+app_name = 'customers'
 urlpatterns =[
     path('', views.index, name='index'),
-    path('<int:customer_id>/', views.detail, name='detail'),
+    path('details/', views.details, name='details'),
     path('new/', views.create, name='create'),
     path('delete/<int:customer_id>', views.delete, name='delete'),
-    path('weekly_pickup/', views.weekly_pickup, name='weekly_pickup')
+    path('weekly/', views.weekly, name='weekly'),
+    path('suspend/', views.suspend, name='suspend')
     
 ]
