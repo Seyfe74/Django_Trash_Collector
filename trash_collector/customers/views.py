@@ -17,7 +17,7 @@ from django.shortcuts import (get_object_or_404,
 
 def index(request):
     # The following line will get the logged-in in user (if there is one) within any view function
-    Customer.objects.get(user=user)
+    user = request.user
 
     try:
         # This line inside the 'try' will return the customer record of the logged-in user if one exists

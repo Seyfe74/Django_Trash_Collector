@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Customer Account Info {% endblock %}
+
+{% block header %}Customer Account Info{% endblock %}
+
+{% block content %}
+    <ul>    
+         
+        <li> <h2> {{single_cust.name}}</h2></li>
+        <li> <h2> {{single_cust.address}}</h2></li>
+        <li> <h2> {{single_cust.zip_code}}</h2></li>
+        <li> <h2> {{single_cust.balance}}</h2></li>
+        <li> <h2> {{single_cust.one_time_pickup}}</h2></li>
+        <li> <h2> {{single_cust.weekly_pickup_day}}</h2></li>
+        <li> <h2> {{single_cust.suspend_start}}</h2></li>
+        <li> <h2> {{single_cust.suspend_status}}</h2></li>
+        <li> <h2> {{single_cust.pickup_status}}</h2></li>
+   
+   </ul>
+
+
+   
+{% endblock %}
