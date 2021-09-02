@@ -8,9 +8,17 @@ Customer Account Info
 {% endblock %}
 
 {% block content %}
-    
-<h2> {{single_cust.name}}</h2>
 
-{{custs.name}}
+{% for c in cus_info%}
+    
+<h2> {{c.name}}</h2>
+
+{% endfor %}
+
+{% for a in ad_info%}
+    
+<h2> {{a.name}}</h2>
+
+{% endfor %}
    
 {% endblock %}

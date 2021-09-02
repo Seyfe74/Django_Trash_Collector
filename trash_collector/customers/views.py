@@ -88,10 +88,6 @@ def suspend(request):
         }
     return render(request, 'customers/suspend.html', context)
 
-def account_info(request):
-    pass
-
-
 
 def delete(request, customer_id):
     single_customer = Customer.objects.get(pk=customer_id)
