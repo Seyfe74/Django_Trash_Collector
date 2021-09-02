@@ -1,10 +1,15 @@
 
-  {% block title %}Customer Account Info {% endblock %}
-  {% block header %}
-  Customer Account Info
-  {% endblock %}
+  {% extends 'base.html' %}
+  
+  {% block title %}{% block header %} Employee Home {% endblock %}{% endblock %}
+  
   {% block content %}
-  {% for c in all_customer%}
-  <h2> {{c.name}}</h2>
-  {% endfor %}
+    {% if user.is_authenticated %}
+      Hello Employee {{ user.username }}!
+    {% else %}
+      <p>You are at the employee index, but you are not logged in.</p>
+      <a href="{% url 'login' %}">Log In</a>
+      <a href="{% url 'accounts:register' %}">Sign Up</a>
+    {% endif %}
   {% endblock %}
+  

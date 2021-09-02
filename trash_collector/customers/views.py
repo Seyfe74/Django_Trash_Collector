@@ -3,11 +3,10 @@ from django.urls import reverse
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from .models import Customer
-from django.shortcuts import (get_object_or_404,
-                              render,
-                              HttpResponseRedirect)
+from django.shortcuts import (get_object_or_404,render,HttpResponseRedirect)
 from django.apps import apps
-
+import calendar
+from datetime import date
  
  
 
@@ -87,10 +86,6 @@ def suspend(request):
             'single_customer' : single_customer
         }
     return render(request, 'customers/suspend.html', context)
-
-def account_info(request):
-    pass
-
 
 
 def delete(request, customer_id):

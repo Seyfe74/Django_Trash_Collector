@@ -15,6 +15,6 @@ urlpatterns =[
     path('delete/<int:customer_id>', views.delete, name='delete'),
     path('weekly/', views.weekly, name='weekly'),
     path('suspend/', views.suspend, name='suspend')
-    
+   
     
 ]
