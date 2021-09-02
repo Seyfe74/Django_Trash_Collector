@@ -21,7 +21,7 @@ def index(request,):
     user = request.user
     Customer = apps.get_model('customers.Customer')
     # logged_in_employee = Employee.objects.get(user=user)
-    employee_zip =Employee.zip_code
+    employee_zip =Employee.zip_code()
     today = date.today()
     day_of_week = (calendar.day_name[today.weekday()])
     # not_suspended = Customer.suspend_status (= False)

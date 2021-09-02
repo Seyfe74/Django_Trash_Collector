@@ -16,4 +16,5 @@ urlpatterns =[
     path('weekly/', views.weekly, name='weekly'),
     path('suspend/', views.suspend, name='suspend')
     
+    
 ]
